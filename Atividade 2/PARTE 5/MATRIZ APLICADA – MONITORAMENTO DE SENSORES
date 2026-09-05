@@ -1,0 +1,42 @@
+import random
+sensores=[[round(random.uniform(15,35),1) for _ in range (24)] for _ in range(5)]
+print("Matriz de sensores:")
+for i in range(5):
+  print(f"Sensor{i}: {sensores[i]}")
+med_sensores=[]
+for i in range(5):
+  soma=0
+  for j in range(24):
+    soma + sensores[i][j]
+  media=soma/24
+  med_sensores.append(media)
+print("\nMedias dos sensores:")
+for i in range(5):
+  print(f"Sensor{i}: Média= {med_sensores[i]:.2f}")
+maior_valor=sensores[0][0]
+maior_sensor= 0
+horario_maior=0
+for i in range(5):
+  for j in range(24):
+    if sensores[i][j]>maior_valor:
+      maior_valor=sensores[i][j]
+      maior_sensor=i
+      horario_maior=j
+
+print(f'\nMaior temp registrada: {maior_valor:.2f}')
+print(f'Sensor que mediu: {maior_sensor}')
+print(f'Horário da medição: {horario_maior}')
+
+total=0
+for i in range(5):
+  for j in range(24):
+    total += sensores[i][j]
+media_geral=total/(5*24)
+print(f'\nMédia geral: {media_geral:.2f}')
+limite=float(input('\nInforme o limite de temperatura: '))
+contador=0
+for i in range(5):
+  for j in range(24):
+    if sensores[i][j]>limite:
+      contador += 1
+print(f'\nQuantidade acima do limite: {contador}')
