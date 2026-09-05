@@ -1,1 +1,65 @@
+import random
+import time
 
+# BUBBLE SORT
+def bubble_sort(vetor):
+    comparacoes = 0
+    trocas = 0
+    for i in range(len(vetor)):
+        for j in range(len(vetor) - 1 - i):
+            comparacoes += 1
+            if vetor[j] > vetor[j + 1]:
+                vetor[j], vetor[j + 1] = vetor[j + 1], vetor[j]
+                trocas += 1
+    return comparacoes, trocas
+# QUICK SORT
+def quick_sort(vetor):
+    comparacoes = 0
+    movimentacoes = 0
+    def ordenar(inicio, fim):
+        nonlocal comparacoes, movimentacoes
+        if inicio < fim:
+            p = particionar(inicio, fim)
+            ordenar(inicio, p - 1)
+            ordenar(p + 1, fim)
+    def particionar(inicio, fim):
+        nonlocal comparacoes, movimentacoes
+        pivo = vetor[fim]
+        i = inicio - 1
+        for j in range(inicio, fim):
+            comparacoes += 1
+            if vetor[j] <= pivo:
+                i += 1
+                vetor[i], vetor[j] = vetor[j], vetor[i]
+                movimentacoes += 1
+        vetor[i + 1], vetor[fim] = vetor[fim], vetor[i + 1]
+        movimentacoes += 1
+        return i + 1
+    ordenar(0, len(vetor) - 1)
+    return comparacoes, movimentacoes
+# TESTES
+tamanhos = [10, 20, 1000]
+print("-" * 80)
+print("Tamanho | Bubble Comp. | Bubble Trocas | Quick Comp. | Quick Mov.")
+print("-" * 80)
+for tamanho in tamanhos:
+
+    # gera os dados originais
+    original = [random.randint(1, 10000) for _ in range(tamanho)]
+
+    # cria cópias para garantir os mesmos dados
+    copia_bubble = original.copy()
+    copia_quick = original.copy()
+
+    # Bubble Sort
+    inicio = time.time()
+    comp_bubble, trocas_bubble = bubble_sort(copia_bubble)
+    tempo_bubble = time.time() - inicio
+
+    # Quick Sort
+    inicio = time.time()
+    comp_quick, mov_quick = quick_sort(copia_quick)
+    tempo_quick = time.time() - inicio
+    print(f"{tamanho:^7} | {comp_bubble:^13} | {trocas_bubble:^13} | "
+          f"{comp_quick:^11} | {mov_quick:^11}")
+print("-" * 80)
