@@ -1,0 +1,46 @@
+def busca_matriz(matriz, valor):
+    comparacoes = 0
+    for linha in range(len(matriz)):
+        for coluna in range(len(matriz[0])):
+            comparacoes += 1
+            if matriz[linha][coluna] == valor:
+                return linha, coluna, comparacoes
+    return -1, -1, comparacoes
+# MATRIZ 2x2
+matriz_2 = [
+    [1, 2],
+    [3, 4]
+]
+# MATRIZ 10x10
+matriz_10 = []
+numero = 1
+for i in range(10):
+    linha = []
+    for j in range(10):
+        linha.append(numero)
+        numero += 1
+    matriz_10.append(linha)
+# MATRIZ 100x100
+matriz_100 = []
+numero = 1
+for i in range(100):
+    linha = []
+    for j in range(100):
+        linha.append(numero)
+        numero += 1
+    matriz_100.append(linha)
+# TESTES
+print("Matriz 2x2")
+print("Início", busca_matriz(matriz_2, 1))
+print("Final", busca_matriz(matriz_2, 4))
+print("Inexistente",busca_matriz(matriz_2, 999))
+
+print("\nMatriz 10x10")
+print("Início", busca_matriz(matriz_10, 1))
+print("Final", busca_matriz(matriz_10, 100))
+print("Inexistente",busca_matriz(matriz_10, 999))
+
+print("\nMatriz 100x100")
+print("Início", busca_matriz(matriz_100, 1))
+print("Final", busca_matriz(matriz_100, 10000))
+print("Inexistente", busca_matriz(matriz_100, 99999))
