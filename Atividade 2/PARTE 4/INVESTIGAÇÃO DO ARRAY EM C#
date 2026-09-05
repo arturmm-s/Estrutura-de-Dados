@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main() {
+    float temperatura[10];
+    float soma = 0, media;
+    float maior, menor;
+    int indiceMaior = 0, indiceMenor = 0;
+    int acimaMedia = 0;
+    for(int i = 0; i < 10; i++) {
+        printf("Digite a temperatura %d: ", i);
+        scanf("%f", &temperatura[i]);
+    }
+    maior = temperatura[0];
+    menor = temperatura[0];
+    printf("\nTemperaturas armazenadas:\n");
+    for(int i = 0; i < 10; i++) {
+        printf("Indice %d -> %.1f\n", i, temperatura[i]);
+        soma += temperatura[i];
+        if(temperatura[i] > maior) {
+            maior = temperatura[i];
+            indiceMaior = i;
+        }
+        if(temperatura[i] < menor) {
+            menor = temperatura[i];
+            indiceMenor = i;
+        }
+    }
+    media = soma / 10;
+    //Contador de média
+    for(int i = 0; i < 10; i++) {
+        if(temperatura[i] > media) {
+            acimaMedia++;
+        }
+    }
+    printf("\nMedia: %.2f\n", media);
+    printf("Maior temperatura: %.1f\n", maior);
+    printf("Indice do maior valor: %d\n", indiceMaior);
+
+    printf("Menor temperatura: %.1f\n", menor);
+    printf("Indice do menor valor: %d\n", indiceMenor);
+
+    printf("Quantidade acima da media: %d\n", acimaMedia);
+    return 0;
+}
